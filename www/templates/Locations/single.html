@@ -1,0 +1,35 @@
+<ion-view view-title="Locatie">
+    <ion-content>
+        <div class="list card">
+
+            <div class="item item-divider">
+                {{ dojo.name }}
+            </div>
+
+            <a href="#" class="item item-icon-left">
+                <i class="icon ion-home"></i>
+                {{ dojo.address }}<br/>
+                {{ dojo.postalcode }} {{ dojo.city }}
+            </a>
+
+            <a href="#" class="item item-icon-left">
+                <i class="icon ion-ios-telephone"></i>
+                {{ dojo.phone }}
+            </a>
+
+            <a href="mailto: {{ dojo.email }}" class="item item-icon-left">
+                <i class="icon ion-email"></i>
+                {{ dojo.email }}
+            </a>
+
+            <a href="{{ dojo.website }}" class="item item-icon-left">
+                <i class="icon ion-android-globe"></i>
+                {{ dojo.website }}
+            </a>
+
+            <div class="item item-image">
+                <img src="{{ dojo.getImageUrl() }}">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

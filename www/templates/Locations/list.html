@@ -1,0 +1,18 @@
+<ion-view view-title="Locaties">
+    <ion-content>
+        <div class="list">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="text" name="searchKey" ng-model="searchKey" ng-change="doSearch(searchKey)">
+                </label>
+            </div>
+            <a class="item item-avatar" ng-repeat="location in locations" href="#/app/locations/{{location.id}}">
+                <img ng-src="{{location.getImageUrl()}}">
+                <h2>{{location.name}}</h2>
+                <p>{{ location.venue }}</p>
+            </a>
+
+        </div>
+    </ion-content>
+</ion-view>

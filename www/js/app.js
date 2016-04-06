@@ -78,6 +78,18 @@ angular.module('coderdojonederland', ['ionic'])
                         controller: 'EventController'
                     }
                 }
+            })
+
+            /**
+             * Info Page
+             */
+            .state('app.info', {
+                url: '/info',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/info.html'
+                    }
+                }
             });
 
         // if none of the above states are matched, use this as the fallback

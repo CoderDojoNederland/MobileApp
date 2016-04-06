@@ -61,14 +61,16 @@ angular.module('coderdojonederland')
                 found = [];
 
                 for (var i = 0; i < eventList.length; i++) {
-                    name = eventList[ i ].name.toLowerCase();
-                    city = eventList[ i ].city.toLowerCase();
-                    venue = eventList[ i ].location.toLowerCase();
+                    name = eventList[ i ].dojo.name.toLowerCase();
+                    city = eventList[ i ].dojo.city.toLowerCase();
+                    venue = eventList[ i ].dojo.venue.toLowerCase();
+                    dateTime = eventList[ i ].getDatePresentation().toLowerCase();
 
                     if (
                         0 <= name.search(searchKey) ||
                         0 <= city.search(searchKey) ||
-                        0 <= venue.search(searchKey)
+                        0 <= venue.search(searchKey) ||
+                        0 <= dateTime.search(searchKey)
                     ) {
                         found.push(eventList[i]);
                     }

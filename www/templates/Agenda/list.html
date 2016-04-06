@@ -1,0 +1,18 @@
+<ion-view view-title="Agenda">
+    <ion-content>
+        <div class="list">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="text" name="searchKey" ng-model="searchKey" ng-change="doSearch(searchKey)">
+                </label>
+            </div>
+            <a class="item item-avatar" ng-repeat="event in events" href="#/app/agenda/{{event.id}}">
+                <img ng-src="{{event.dojo.getImageUrl()}}">
+                <h2>{{ event.getDatePresentation() }}</h2>
+                <p>{{ event.dojo.name }}</p>
+            </a>
+
+        </div>
+    </ion-content>
+</ion-view>

@@ -81,7 +81,7 @@ angular.module('coderdojonederland')
                 for (var i = 0; i < dojoList.length; i++) {
                     name = dojoList[ i ].name.toLowerCase();
                     city = dojoList[ i ].city.toLowerCase();
-                    venue = dojoList[ i ].location.toLowerCase();
+                    venue = dojoList[ i ].venue.toLowerCase();
 
                     if (
                         0 <= name.search(searchKey) ||

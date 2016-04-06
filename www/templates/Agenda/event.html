@@ -1,0 +1,26 @@
+<ion-view view-title="{{ dojoEvent.dojo.name }}">
+    <ion-content>
+        <div class="list card">
+            
+            <a href="#" class="item item-icon-left">
+                <i class="icon ion-calendar"></i>
+                {{ dojoEvent.getDatePresentation() }}
+            </a>
+
+            <a href="{{ dojoEvent.registration }}" class="item item-icon-left">
+                <i class="icon ion-person-add"></i>
+                Registreren
+            </a>
+
+            <a href="#" class="item item-icon-left">
+                <i class="icon ion-home"></i>
+                {{ dojoEvent.dojo.address }}<br/>
+                {{ dojoEvent.dojo.postalcode }} {{ dojoEvent.dojo.city }}
+            </a>
+
+            <div class="item item-image">
+                <img src="{{ dojoEvent.dojo.getImageUrl() }}">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

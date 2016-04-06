@@ -52,6 +52,32 @@ angular.module('coderdojonederland', ['ionic'])
                         controller: 'SingleLocationController'
                     }
                 }
+            })
+
+            /**
+             * Agenda Page
+             */
+            .state('app.agenda', {
+                url: '/agenda',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/Agenda/list.html',
+                        controller: 'AgendaController'
+                    }
+                }
+            })
+
+            /**
+             * Event Detail
+             */
+            .state('app.event', {
+                url: '/agenda/:eventId',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/Agenda/event.html',
+                        controller: 'EventController'
+                    }
+                }
             });
 
         // if none of the above states are matched, use this as the fallback

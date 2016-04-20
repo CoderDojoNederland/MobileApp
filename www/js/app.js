@@ -93,7 +93,8 @@ angular.module('coderdojonederland', ['ionic'])
                 url: '/info',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/info.html'
+                        templateUrl: 'templates/info.html',
+                        controller: 'InfoCtrl'
                     }
                 }
             });

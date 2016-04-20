@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('coderdojonederland', ['ionic'])
 
-    .run(function ($ionicPlatform) {
+    .run(function ($ionicPlatform, DojoList, EventList) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -19,6 +19,12 @@ angular.module('coderdojonederland', ['ionic'])
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+
+            DojoList.getDojos().then(function(result){
+                EventList.getEvents().then(function(result){
+                    navigator.splashscreen.hide();
+                });
+            });
         });
     })
 

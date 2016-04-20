@@ -15,7 +15,7 @@ angular.module('coderdojonederland')
 
         Dojo.prototype = {
             getImageUrl: function() {
-                return '/img/avatars/'+this.image+'.png';
+                return 'img/avatars/'+this.image+'.png';
             }
         };
 

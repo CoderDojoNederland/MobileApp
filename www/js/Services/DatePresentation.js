@@ -3,10 +3,9 @@ angular.module('coderdojonederland')
     .factory('DatePresentation', function() {
         function DatePresentation (timeStamp) {
 
-            this.timeStamp = timeStamp;
+            var d = new Date(timeStamp);
 
             this.getPresentation = function() {
-                var d = new Date(this.timeStamp * 1000);
                 var day = this.translatedDay(d.getDay());
                 var month = this.translatedMonth(d.getMonth());
 

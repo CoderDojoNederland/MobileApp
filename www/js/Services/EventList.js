@@ -1,28 +1,8 @@
 angular.module('coderdojonederland')
 
-    .factory('EventList', ['$http', 'DojoEvent', 'DojoList', function EventList($http, DojoEvent, DojoList) {
+    .factory('EventList', ['$http', 'DojoEvent', 'DojoList', '$q', function EventList($http, DojoEvent, DojoList, $q) {
+        var defferrer = $q.defer();
         var eventList = [];
-
-        eventList.push(new DojoEvent(
-            1,
-            DojoList.getDojo(1),
-            1460208600,
-            'http://codereventrdam.eventbrite.com'
-        ));
-
-        eventList.push(new DojoEvent(
-            2,
-            DojoList.getDojo(2),
-            1463578200,
-            'http://codereventrdam.eventbrite.com'
-        ));
-
-        eventList.push(new DojoEvent(
-            3,
-            DojoList.getDojo(2),
-            1464269400,
-            'http://codereventrdam.eventbrite.com'
-        ));
 
         return {
             /**
@@ -47,7 +27,24 @@ angular.module('coderdojonederland')
              * Retrieve the entire event list
              */
             getEvents: function () {
-                return eventList;
+                if (0 === eventList.length) {
+                    $http.get('https://www.coderdojo.nl/api/events')
+                        .success(function(response) {
+                            for (var i = 0; i<response.length; i++) {
+                                eventList.push(new DojoEvent(
+                                    response[i].id,
+                                    DojoList.getDojo(response[i].dojo),
+                                    response[i].date,
+                                    response[i].url
+                                ));
+                            }
+                            defferrer.resolve(eventList);
+                        });
+                } else {
+                    defferrer.resolve(eventList);
+                }
+
+                return defferrer.promise;
             },
 
             /**

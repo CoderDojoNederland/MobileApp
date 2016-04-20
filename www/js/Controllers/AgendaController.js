@@ -5,7 +5,9 @@ angular.module('coderdojonederland')
      */
     .controller('AgendaController', ['$scope', 'EventList', function($scope, EventList) {
 
-        $scope.events = EventList.getEvents();
+        EventList.getEvents().then(function(dojoEvents){
+            $scope.events = dojoEvents;
+        });
 
         $scope.doSearch = function(searchKey) {
             $scope.events = EventList.searchEvent(searchKey);

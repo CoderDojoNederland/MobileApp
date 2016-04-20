@@ -5,7 +5,9 @@ angular.module('coderdojonederland')
      */
     .controller('LocationsController', ['$scope', 'DojoList', function($scope, DojoList) {
 
-        $scope.locations = DojoList.getDojos();
+        DojoList.getDojos().then(function(dojos){
+            $scope.locations = dojos;
+        });
 
         $scope.doSearch = function(searchKey) {
             $scope.locations = DojoList.searchDojo(searchKey);

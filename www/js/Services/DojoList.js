@@ -1,48 +1,41 @@
 angular.module('coderdojonederland')
 
-    .factory('DojoList', ['$http', 'Dojo', function DojoList($http, Dojo) {
+    .factory('DojoList', ['$http', 'Dojo', '$q', function DojoList($http, Dojo, $q) {
+        var defferrer = $q.defer();
         var dojoList = [];
 
-        dojoList.push(new Dojo(
-            1,
-            'CoderDojo Rotterdam',
-            'green',
-            'http://www.coderdojo-rotterdam.nl',
-            'contact@coderdojo-rotterdam.nl',
-            'Heer bokelweg 155',
-            'Startup Foundation',
-            '2321AH',
-            'Rotterdam',
-            '0107894827'
-        ));
-
-        dojoList.push(new Dojo(
-            2,
-            'CoderDojo Leiden',
-            'blue',
-            'http://www.coderdojo-leiden.nl',
-            'contact@coderdojo-;eiden.nl',
-            'Heer bokelweg 155',
-            'B plus C',
-            '2321AH',
-            'Leiden',
-            '0107894827'
-        ));
-
-        dojoList.push(new Dojo(
-            3,
-            'CoderDojo Delft',
-            'yellow',
-            'http://www.coderdojo-delft.nl',
-            'contact@coderdojo-delft.nl',
-            'Heer bokelweg 155',
-            'Openbare Bibliotheek',
-            '2321AH',
-            'Delft',
-            '0107894827'
-        ));
-
         return {
+            /**
+             * Get the full list of dojo. Only touches api if we don't have the list yet
+             * @returns {Promise}
+             */
+            getDojos: function() {
+                if (0 === dojoList.length) {
+                    $http.get('https://www.coderdojo.nl/api/dojos')
+                    .success(function(response) {
+                        for (var i = 0; i<response.length; i++) {
+                            dojoList.push(new Dojo(
+                                response[i].id,
+                                response[i].name,
+                                'blue',
+                                response[i].website,
+                                response[i].email,
+                                response[i].street + ' ' + response[i].housenumber,
+                                response[i].location,
+                                response[i].postalcode,
+                                response[i].city,
+                                response[i].phone
+                            ))
+                        }
+                        defferrer.resolve(dojoList);
+                    });
+                } else {
+                    defferrer.resolve(dojoList);
+                }
+
+                return defferrer.promise;
+            },
+
             /**
              * Retrieve a specific dojo from the list
              *
@@ -59,13 +52,6 @@ angular.module('coderdojonederland')
                 }
 
                 return false;
-            },
-
-            /**
-             * Retrieve the entire dojo list
-             */
-            getDojos: function () {
-                return dojoList;
             },
 
             /**

@@ -1,7 +1,7 @@
 angular.module('coderdojonederland')
 
     .factory('Dojo', function() {
-        function Dojo (id, name, image, website, email, address, venue, postalcode, city, phone) {
+        function Dojo (id, name, image, website, email, address, venue, postalcode, city) {
             this.id = id;
             this.name = name;
             this.image = image;
@@ -11,7 +11,6 @@ angular.module('coderdojonederland')
             this.venue = venue;
             this.postalcode = postalcode;
             this.city = city;
-            this.phone = phone;
         }
 
         Dojo.prototype = {
